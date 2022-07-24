@@ -10,6 +10,8 @@ class SubCategory(models.Model):
         ('Free', 'Fr'),
     ]
     SubCategory_name=models.CharField(max_length=15,choices=SubCategories,primary_key=True)
+    def __str__(self):
+        return f"{self.SubCategory_name} "
 class Category(models.Model):
     Categories = [
         ('Family', 'Fam'),
@@ -19,6 +21,8 @@ class Category(models.Model):
     ]
     Category_name=models.CharField(max_length=15,choices=Categories,primary_key=True)
     SubCategory=models.ForeignKey(SubCategory, on_delete=models.CASCADE, related_name="SubCategory")
+    def __str__(self):
+        return f"{self.Category_name} ({self.SubCategory})  "
 
 class Location(models.Model):
     Region_CHOICES = [
@@ -44,13 +48,13 @@ class Events(models.Model):
     Category=models.ForeignKey(Category,on_delete=models.CASCADE, related_name="Event_Category")
     Date = models.DateField(blank=True)
     Capacity= models.IntegerField(default=30)
-    CurrentCapacity= models.IntegerField(default=30)
+    CurrentCapacity= models.IntegerField(default=0)
     Event_location= models.ForeignKey(Location, on_delete=models.CASCADE, related_name="Event_Location")
     Event_image = models.ImageField()
 
      
     def __str__(self):
-        return f"{self.Event_Id} {self.Event_Name} ({self.Event_Cost})  ({self.Date})  ({self.Capacity})  ({self.Event_location})"
+        return f"{self.Event_Id} {self.Event_Name} ({self.Event_Cost}) ({self.Category}) ({self.Date})  ({self.Capacity}) ({self.CurrentCapacity})  ({self.Event_location})"
 
 class Users(models.Model):
      user_id = models.IntegerField(primary_key=TRUE,)
