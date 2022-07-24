@@ -1,0 +1,8 @@
+#navigation,.navbar .navbar-default{
+    border-top: 2px dotted blue;
+    border-bottom: 2px dotted blue; 
+    background-image: url("http://upload.wikimedia.org/wikipedia/commons/6/6b/Bubble_3.jpg");
+  
+    background: url('http://upload.wikimedia.org/wikipedia/commons/6/6b/Bubble_3.jpg');
+   font-style: zapfino;
+  }
