@@ -7,3 +7,4 @@ admin.site.register(Location)
 admin.site.register(Category)
 admin.site.register(SubCategory)
 admin.site.register(Users)
+

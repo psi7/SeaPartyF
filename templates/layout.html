@@ -32,12 +32,16 @@
                 <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}">Log in</a>
+                <a class="nav-link" href="{% url 'login' %}"><b style="color: red;">Log in</b></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'list-events' %}"><b style="color: aqua;">Current Events</b></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'signup' %}" ><b style="color: blue">Sign Up</b></a>
               </li>
             </ul>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'signup' %}">Sign Up</a>
-            </li>
+            
           </ul>
             <form class="d-flex">
               <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -53,10 +57,13 @@
         <p>You are not logged in.</p>
         <a href="{% url 'login' %}">Log In</a>
       {% endif %}
-    {% block content %}
+    <div class="container">
+      {% block content %}
     
 
-    {% endblock content %}
+      {% endblock content %}
+    </div>
+   
     <!--Footer-->
     <footer class="pagefooter">
         <div class="container">

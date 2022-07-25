@@ -1,6 +1,7 @@
 from pickle import TRUE
 from django.db import models
 from django.forms import CharField
+from django.urls import reverse
 # Create your models here.
 class SubCategory(models.Model):
     SubCategories = [
@@ -9,7 +10,7 @@ class SubCategory(models.Model):
         ('Cheap', 'chp'),
         ('Free', 'Fr'),
     ]
-    SubCategory_name=models.CharField(max_length=15,choices=SubCategories,primary_key=True)
+    SubCategory_name=models.CharField(max_length=15,choices=SubCategories,default=True)
     def __str__(self):
         return f"{self.SubCategory_name} "
 class Category(models.Model):
@@ -19,7 +20,7 @@ class Category(models.Model):
         ('Solo', 'Sol'),
         ('Children', 'Kid'),
     ]
-    Category_name=models.CharField(max_length=15,choices=Categories,primary_key=True)
+    Category_name=models.CharField(max_length=15,choices=Categories,default=True)
     SubCategory=models.ForeignKey(SubCategory, on_delete=models.CASCADE, related_name="SubCategory")
     def __str__(self):
         return f"{self.Category_name} ({self.SubCategory})  "
@@ -55,6 +56,10 @@ class Events(models.Model):
      
     def __str__(self):
         return f"{self.Event_Id} {self.Event_Name} ({self.Event_Cost}) ({self.Category}) ({self.Date})  ({self.Capacity}) ({self.CurrentCapacity})  ({self.Event_location})"
+    
+    def get_absolute_url(self):
+        return reverse("event_detail", kwargs={"eventd": self.eventd})
+
 
 class Users(models.Model):
      user_id = models.IntegerField(primary_key=TRUE,)
